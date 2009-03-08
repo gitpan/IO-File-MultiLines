@@ -1,0 +1,6 @@
+Revision history for Perl extension IO::File::MultiLines.
+
+0.01  Sun Mar  8 14:46:14 2009
+	- original version; created by h2xs 1.23 with options
+		-XA -n IO::File::MultiLines
+
