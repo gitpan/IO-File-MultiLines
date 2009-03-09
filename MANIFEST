@@ -4,3 +4,4 @@ MANIFEST
 README
 t/IO-File-MultiLines.t
 lib/IO/File/MultiLines.pm
+META.yml                                 Module meta-data (added by MakeMaker)
