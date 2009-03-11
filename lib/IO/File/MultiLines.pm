@@ -7,22 +7,19 @@ use IO::File;
 use base qw/IO::File/;
 
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub new{ goto &IO::File::new};
 
 sub get_lines{
 	croak "Can not run under void context" unless defined wantarray;
-	my $fh = shift;
-	my $n = shift;
-	croak <<EOF unless $n=~/^\d+/;
+	my ($fh,$n) = @_;
+	croak <<EOF unless $n=~/^\d+$/;
 	invalid parameter for get_lines;
 EOF
 	my @tmp;
-	@. = ();
 	foreach(1..$n){
 		my $line = <$fh>;
-		push @.,$.;
 		last unless defined $line;
 		push @tmp,$line; 
 	}
@@ -39,8 +36,7 @@ IO::File::MultiLines
 
 =head1 DESCRIPTION
 
-	Simple interface to read multiple lines into array or scalar
-	It is a subclass of IO::Files	
+Simple interface to read multiple lines into array or scalar
 
 =head1 SYNOPSIS
 
@@ -48,7 +44,7 @@ IO::File::MultiLines
 	my $fh = new IO::File::MultiLines "FILENAME","r";
 	
 	while( my @a = $fh->get_lines(5)){
-		print @{$_};
+		print @a;
 	} 
 
 =head1 MEHHODS
@@ -65,7 +61,7 @@ L<IO::File>
 
 =head1 AUTHOR
 
-woosley.xu<lt>woosley.xu@gmail.com<gt>
+woosley.xu E<lt>F<woosley.xu@gmail.com>E<gt>.
 
 =head1 COPYRIGHT AND LICENSE
 
